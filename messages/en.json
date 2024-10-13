@@ -1,0 +1,12 @@
+{
+  "HomePage": {
+    "title": "Hello welcome to Muuza",
+    "about": "Go to the about page"
+  },
+  "Dashboard": {
+    "title": "Welcome to Your Muuza Dashboard"
+  },
+  "LocaleSwichert": {
+    "label": "Change language",
+    "locale": "{locale, select, sw {🇹🇿 Swahili} en {🇺🇸 English} other {Unknown}}" }
+}
