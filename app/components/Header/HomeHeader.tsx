@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false); // State to control mobile menu
-  const t = useTranslations("header")
+  const t = useTranslations("header");
 
   // Toggle the menu
   const toggleMenu = () => {
@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-background shadow w-full h-24 py-2">
+    <header className="bg-background shadow w-full h-20 py-2">
       <div className="flex items-center justify-between w-full">
         <div className="flex flex-nowrap items-center">
           {/* Mobile Menu Toggle */}
@@ -35,9 +35,16 @@ const Header = () => {
               />
             )}
           </div>
-
           {/* Logo */}
-          <Image src={logo} alt="Muuza Logo" style={{height : 'auto', width :'auto'}} priority/>
+          <Image
+            alt="Muuza logo"
+            src={logo}
+            style={{
+              height: "48px",
+              width: "202px",
+            }}
+            priority
+          />
         </div>
 
         {/* Desktop Links */}
@@ -48,10 +55,16 @@ const Header = () => {
           >
             {t("sell")}
           </Link>
-          <Link href="/about" className="text-gray-700 hover:text-green-600 font-semibold">
+          <Link
+            href="/about"
+            className="text-gray-700 hover:text-green-600 font-semibold"
+          >
             {t("about")}
           </Link>
-          <Link href="/blog" className="text-gray-700 hover:text-green-600 font-semibold">
+          <Link
+            href="/blog"
+            className="text-gray-700 hover:text-green-600 font-semibold"
+          >
             {t("blog")}
           </Link>
         </nav>
@@ -72,7 +85,7 @@ const Header = () => {
 
       {/* Mobile Navigation Menu with Slide-in Effect */}
       <div
-        className={`absolute top-24 left-0 h-full bg-background z-50 transform ${
+        className={`absolute top-20 left-0 h-full bg-background z-50 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out w-full p-6 md:hidden bg-background`}
       >
@@ -89,21 +102,21 @@ const Header = () => {
             className="text-gray-700 hover:text-green-600 text-lg"
             onClick={toggleMenu}
           >
-           {t("about")}
+            {t("about")}
           </Link>
           <Link
             href="/blog"
             className="text-gray-700 hover:text-green-600 text-lg"
             onClick={toggleMenu}
           >
-           {t("blog")}
+            {t("blog")}
           </Link>
           <Link
             href="/get-started"
             className="bg-secondcolor hover:bg-green-600 text-white py-2 px-4 rounded-full transition duration-300 text-center"
             onClick={toggleMenu}
           >
-             {t("try muuza")}
+            {t("try muuza")}
           </Link>
         </div>
       </div>

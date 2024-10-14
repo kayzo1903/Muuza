@@ -20,28 +20,73 @@
     "blog": "blog",
     "try muuza": "try muuza"
   },
-    "footer": {
-      "products": "Products",
-      "overview": "Overview",
-      "solutions": "Solutions",
-      "pricing": "Pricing",
-      "customers": "Customers",
-      "company": "Company",
-      "about": "About",
-      "investorRelations": "Investor Relations",
-      "jobs": "Jobs",
-      "press": "Press",
-      "blog": "Blog",
-      "support": "Support",
-      "contact": "Contact",
-      "documentation": "Documentation",
-      "chat": "Chat",
-      "faq": "FAQ",
-      "legal": "Legal",
-      "terms": "Terms of Service",
-      "privacy": "Privacy Policy",
-      "cookieSettings": "Cookie settings",
-      "description": "Connecting small businesses to customers quickly and easily.",
-      "rightsReserved": "All rights reserved"
-  }  
+  "footer": {
+    "products": "Products",
+    "overview": "Overview",
+    "solutions": "Solutions",
+    "pricing": "Pricing",
+    "customers": "Customers",
+    "company": "Company",
+    "about": "About",
+    "investorRelations": "Investor Relations",
+    "jobs": "Jobs",
+    "press": "Press",
+    "blog": "Blog",
+    "support": "Support",
+    "contact": "Contact",
+    "documentation": "Documentation",
+    "chat": "Chat",
+    "faq": "FAQ",
+    "legal": "Legal",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "cookieSettings": "Cookie settings",
+    "description": "Connecting small businesses to customers quickly and easily.",
+    "rightsReserved": "All rights reserved"
+  },
+  "howToEarnWithMuuza": {
+    "title": "How to Earn with Muuza",
+    "trackSales": {
+      "title": "Track Sales",
+      "description": "Monitor your sales growth with detailed insights, helping you improve and scale your business."
+    },
+    "easyOrders": {
+      "title": "Easy Orders",
+      "description": "Simplify the buying process for your customers, and receive more orders through our streamlined system."
+    },
+    "growAudience": {
+      "title": "Grow Your Audience",
+      "description": "Reach a wider audience and boost your visibility on Muuza to attract more customers and increase revenue."
+    }
+  },
+  "servicesWeProvide": {
+    "title": "Services We Provide",
+    "fastDelivery": {
+      "title": "Fast Delivery",
+      "description": "We ensure timely and reliable delivery of products to customers through our efficient logistics partners."
+    },
+    "customerSupport": {
+      "title": "Customer Support",
+      "description": "Our dedicated support team is here to assist both vendors and customers with any queries or issues."
+    },
+    "vendorAssistance": {
+      "title": "Vendor Assistance",
+      "description": "We provide resources and guidance to help vendors optimize their store and increase sales on Muuza."
+    }
+  },
+  "about": {
+    "heading": "About Muuza",
+    "subheading": "Connecting Vendors with Customers",
+    "description": "Muuza is a platform that empowers small and medium-sized businesses to reach more customers, grow their sales, and enhance their business operations. We offer fast delivery, excellent customer support, and resources to help vendors thrive."
+  },
+  "blog": {
+    "newsAndUpdates": "News and Updates",
+    "readMore": "Read more",
+    "loadMore": "Load more"
+  },
+  "newsletter": {
+    "heading": "Stay Updated on Food Safety and Nutrition",
+    "subheading": "Subscribe to our newsletter for the latest insights and tips on food business, safety, and nutrition.",
+    "button": "Subscribe"
+  }
 }

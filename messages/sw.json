@@ -43,5 +43,50 @@
     "cookieSettings": "Mipangilio ya Vidakuzi",
     "description": "Kuunganisha biashara ndogo na wateja kwa haraka na urahisi.",
     "rightsReserved": "Haki zote zimehifadhiwa"
+  },
+  "howToEarnWithMuuza": {
+    "title": "Jinsi ya Kupata Kipato na Muuza",
+    "trackSales": {
+      "title": "Fuatilia Mauzo",
+      "description": "Fuatilia ukuaji wa mauzo yako kwa taarifa za kina, kukusaidia kuboresha na kukuza biashara yako."
+    },
+    "easyOrders": {
+      "title": "Oda Rahisi",
+      "description": "Rahisisha mchakato wa kununua kwa wateja wako na pokea oda zaidi kupitia mfumo wetu ulioboreshwa."
+    },
+    "growAudience": {
+      "title": "Kukuza Wateja",
+      "description": "Fikia wateja wengi zaidi na ongeza mwonekano wako kwenye Muuza kuvutia wateja zaidi na kuongeza mapato."
+    }
+  },
+  "servicesWeProvide": {
+    "title": "Huduma Tunazotoa",
+    "fastDelivery": {
+      "title": "Uwasilishaji Haraka",
+      "description": "Tunahakikisha uwasilishaji wa bidhaa kwa wakati na wa kuaminika kwa wateja kupitia washirika wetu wa usafirishaji."
+    },
+    "customerSupport": {
+      "title": "Huduma kwa Wateja",
+      "description": "Timu yetu ya msaada inapatikana kuwasaidia wauzaji na wateja na maswali au matatizo yoyote."
+    },
+    "vendorAssistance": {
+      "title": "Msaada kwa Wauzaji",
+      "description": "Tunatoa rasilimali na mwongozo kusaidia wauzaji kuboresha maduka yao na kuongeza mauzo kwenye Muuza."
+    }
+  },
+  "about": {
+    "heading": "Kuhusu Muuza",
+    "subheading": "Kuleta Wafanyabiashara na Wateja Pamoja",
+    "description": "Muuza ni jukwaa linalowezesha wafanyabiashara wadogo na wa kati kufikia wateja wengi zaidi, kukua kwa mauzo yao, na kuboresha biashara zao. Tunatoa huduma ya haraka, msaada bora kwa wateja, na rasilimali kusaidia wauzaji kujiendeleza."
+  },
+  "blog": {
+    "newsAndUpdates": "Habari na Sasisho",
+    "readMore": "Soma zaidi",
+    "loadMore": "Pakua zaidi"
+  },
+  "newsletter": {
+    "heading": "Pata taarifa juu ya Usalama wa Chakula na Lishe",
+    "subheading": "Jiandikishe kwa jarida letu kwa maarifa na vidokezo vya hivi punde juu ya biashara ya chakula, usalama, na lishe.",
+    "button": "Jiandikishe"
   }
 }

@@ -8,7 +8,7 @@ const Hero = () => {
   const t = useTranslations("HomePage"); // Use translation hook
 
   return (
-    <section className="relative h-screen">
+    <section className="relative h-fit">
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between h-fit lg:py-16 px-6 sm:px-12 lg:px-24 space-y-8 lg:space-y-0 lg:gap-2">
         
@@ -28,12 +28,12 @@ const Hero = () => {
               <input
                 type="text"
                 placeholder={t("placeholder")}
-                className="w-full px-2 py-3 pl-12 pr-4 mb-4 bg-gray-50 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-600"
+                className="w-full shadow-md px-2 py-3 pl-12 pr-4 mb-4 bg-gray-1000 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-600"
               />
             </div>
             <button
               type="submit"
-              className="bg-secondcolor text-white py-3 px-8 rounded-full hover:bg-green-700 transition duration-300"
+              className="text-white bg-secondcolor rounded-md py-2 px-2 text-xl hover:text-skin transition-all duration-300"
             >
               {t("ctaButton")}
             </button>
