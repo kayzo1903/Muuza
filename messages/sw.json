@@ -19,5 +19,29 @@
     "about": "kutuhusu",
     "blog": "Badili",
     "try muuza": "tumia muuza"
+  },
+  "footer": {
+    "products": "Bidhaa",
+    "overview": "Muhtasari",
+    "solutions": "Suluhisho",
+    "pricing": "Bei",
+    "customers": "Wateja",
+    "company": "Kampuni",
+    "about": "Kuhusu",
+    "investorRelations": "Mambo ya Uwekezaji",
+    "jobs": "Kazi",
+    "press": "Vyombo vya Habari",
+    "blog": "Blogu",
+    "support": "Msaada",
+    "contact": "Wasiliana",
+    "documentation": "Nyaraka",
+    "chat": "Mazungumzo",
+    "faq": "Maswali ya Mara kwa Mara",
+    "legal": "Sheria",
+    "terms": "Masharti ya Huduma",
+    "privacy": "Sera ya Faragha",
+    "cookieSettings": "Mipangilio ya Vidakuzi",
+    "description": "Kuunganisha biashara ndogo na wateja kwa haraka na urahisi.",
+    "rightsReserved": "Haki zote zimehifadhiwa"
   }
 }
