@@ -1,7 +1,11 @@
 {
   "HomePage": {
     "title": "Hello welcome to Muuza",
-    "about": "Go to the about page"
+    "about": "Go to the about page",
+    "heroTitle": "Get Food Quickly, Nearby",
+    "heroDescription": "Muuza helps you find food quickly from nearby food businesses.",
+    "placeholder": "Enter Your Location (e.g., Dar es Salaam, Kariakoo, Msimbazi)",
+    "ctaButton": "Find Food"
   },
   "Dashboard": {
     "title": "Welcome to Your Muuza Dashboard"

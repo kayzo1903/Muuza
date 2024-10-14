@@ -1,7 +1,11 @@
 {
   "HomePage": {
     "title": "Hello! karibu muuza",
-    "about": "nenda kwa dashibodi yako"
+    "about": "nenda kwa dashibodi yako",
+    "heroTitle": "Pata Chakula Kwa Haraka, Karibu Na Wewe",
+    "heroDescription": "Muuza inakusaidia kupata chakula kwa haraka kutoka biashara za chakula za karibu.",
+    "placeholder": "Ingiza Eneo Lako (Mfano: Dar es Salaam, Kariakoo, Msimbazi)",
+    "ctaButton": "Tafuta Chakula"
   },
   "Dashboard": {
     "title": "karibu kwa Muuza Dashbodi"

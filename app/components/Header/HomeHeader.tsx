@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-background shadow w-full h-16 py-2">
+    <header className="bg-background shadow w-full h-24 py-2">
       <div className="flex items-center justify-between w-full">
         <div className="flex flex-nowrap items-center">
           {/* Mobile Menu Toggle */}
@@ -72,7 +72,7 @@ const Header = () => {
 
       {/* Mobile Navigation Menu with Slide-in Effect */}
       <div
-        className={`absolute top-16 left-0 h-full bg-background z-50 transform ${
+        className={`absolute top-24 left-0 h-full bg-background z-50 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out w-full p-6 md:hidden bg-background`}
       >
