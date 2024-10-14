@@ -8,5 +8,5 @@
     },
     "LocaleSwichert": {
       "label": "Badili Lugha",
-      "locale": "{locale, select, sw {🇹🇿 kiswahili} en {🇺🇸 English} other {Unknown}}" }
+      "locale": "{locale, select, sw {🇹🇿 Sw} en {🇺🇸 Eng} other {Unknown}}" }
   }

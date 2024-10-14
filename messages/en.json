@@ -8,5 +8,5 @@
   },
   "LocaleSwichert": {
     "label": "Change language",
-    "locale": "{locale, select, sw {🇹🇿 Swahili} en {🇺🇸 English} other {Unknown}}" }
+    "locale": "{locale, select, sw {🇹🇿 Sw} en {🇺🇸 Eng} other {Unknown}}" }
 }
