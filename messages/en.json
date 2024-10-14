@@ -8,5 +8,12 @@
   },
   "LocaleSwichert": {
     "label": "Change language",
-    "locale": "{locale, select, sw {🇹🇿 Sw} en {🇺🇸 Eng} other {Unknown}}" }
+    "locale": "{locale, select, sw {🇹🇿 Sw} en {🇺🇸 Eng} other {Unknown}}"
+  },
+  "header": {
+    "sell": "sell on muuza",
+    "about": "about",
+    "blog": "blog",
+    "try muuza": "try muuza"
+  }
 }

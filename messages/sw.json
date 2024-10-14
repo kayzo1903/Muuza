@@ -1,12 +1,19 @@
 {
-    "HomePage": {
-      "title": "Hello! karibu muuza",
-      "about": "nenda kwa dashibodi yako"
-    },
-    "Dashboard" : {
-      "title" : "karibu kwa Muuza Dashbodi" 
-    },
-    "LocaleSwichert": {
-      "label": "Badili Lugha",
-      "locale": "{locale, select, sw {🇹🇿 Sw} en {🇺🇸 Eng} other {Unknown}}" }
+  "HomePage": {
+    "title": "Hello! karibu muuza",
+    "about": "nenda kwa dashibodi yako"
+  },
+  "Dashboard": {
+    "title": "karibu kwa Muuza Dashbodi"
+  },
+  "LocaleSwichert": {
+    "label": "Badili Lugha",
+    "locale": "{locale, select, sw {🇹🇿 Sw} en {🇺🇸 Eng} other {Unknown}}"
+  },
+  "header": {
+    "sell": "Uza na muuza",
+    "about": "kutuhusu",
+    "blog": "Badili",
+    "try muuza": "tumia muuza"
   }
+}
