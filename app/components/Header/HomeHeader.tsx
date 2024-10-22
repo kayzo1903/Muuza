@@ -36,15 +36,17 @@ const Header = () => {
             )}
           </div>
           {/* Logo */}
-          <Image
-            alt="Muuza logo"
-            src={logo}
-            style={{
-              height: "48px",
-              width: "202px",
-            }}
-            priority
-          />
+          <Link href={"/"}>
+            <Image
+              alt="Muuza logo"
+              src={logo}
+              style={{
+                height: "48px",
+                width: "202px",
+              }}
+              priority
+            />
+          </Link>
         </div>
 
         {/* Desktop Links */}
