@@ -16,7 +16,7 @@ const BlogSection = () => {
         </div>
         {/* text - end */}
 
-        <div>
+        <div className='w-full mx-auto'>
           <Contents  />
         </div>
       </div>

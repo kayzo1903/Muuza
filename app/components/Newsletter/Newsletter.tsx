@@ -16,9 +16,9 @@ const NewsletterSubscription = () => {
               src={newsletter}
               loading="lazy"
               alt="Food safety and nutrition"
-              className="absolute inset-0 h-full w-full object-cover object-center"
+              className="absolute inset-0 h-full"
               style={{
-                height: 'auto' , width : 'auto'
+               objectFit : 'cover',
               }}
             />
           </div>

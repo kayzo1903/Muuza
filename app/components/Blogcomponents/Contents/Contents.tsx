@@ -16,7 +16,7 @@ const Contents = () => {
       try {
         const allPosts: PostInterfaces[] = await getData();
         // Fetch only the first four posts
-        const limitedPosts = allPosts.slice(0, 4);
+        const limitedPosts = allPosts.slice(0, 3);
         setFilteredPost(limitedPosts);
       } catch (error) {
         console.error("Failed to fetch posts:", error);

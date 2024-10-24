@@ -14,6 +14,9 @@ const config: Config = {
         skin : "var(--skincolor)" ,
         secondcolor : "var(--secondcolor)"
       },
+      backgroundImage : {
+        'newletter' : "url('/app/puplic/images/newsletter.jpg')"
+      }
     },
   },
   plugins: [
