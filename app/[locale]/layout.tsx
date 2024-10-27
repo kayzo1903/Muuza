@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { Ubuntu , Poiret_One , Roboto } from "next/font/google";
+import { Ubuntu  } from "next/font/google";
 import "./globals.css";
 
 const ubuntu = Ubuntu({weight : ['300' , '400' , '500' , "700" ] , subsets : ["latin"]})
