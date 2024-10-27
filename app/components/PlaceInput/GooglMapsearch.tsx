@@ -18,7 +18,7 @@ const SearchPlace: React.FC = () => {
 
   // Load Google Maps API with the 'places' library
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries,
   });
 
