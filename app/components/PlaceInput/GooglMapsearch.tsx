@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { HiLocationMarker } from "react-icons/hi";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 // Define the required libraries for Google Maps API
 const libraries: "places"[] = ["places"];
@@ -95,7 +96,7 @@ const SearchPlace: React.FC = () => {
           type="submit"
           className="text-white bg-secondcolor rounded-md py-2 px-2 text-xl hover:text-skin transition-all duration-300"
         >
-          {t("ctaButton")}
+          <Link href={"/shop"}>{t("ctaButton")}</Link>
         </button>
       </div>
     </form>

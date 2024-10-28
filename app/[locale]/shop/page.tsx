@@ -1,12 +1,10 @@
-import { Link } from "@/i18n/routing";
-
 export default async function HomePage() {
   return (
     <main className="max-w-screen-2xl mx-auto px-8">
       <header className="w-full pt-4">
         <nav>
           <div>
-            <Link href={"/"} className="text-2xl md:text-4xl font-bold">Muuza</Link>
+           hi john
           </div>
         </nav>
       </header>
