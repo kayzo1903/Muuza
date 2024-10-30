@@ -1,10 +1,12 @@
+import { Myaccount } from "@/app/components/myAccount/Account";
+
 export default async function HomePage() {
   return (
     <main className="max-w-screen-2xl mx-auto px-8">
       <header className="w-full pt-4">
         <nav>
           <div>
-           hi john
+            <Myaccount />
           </div>
         </nav>
       </header>
