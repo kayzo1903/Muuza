@@ -1,5 +1,5 @@
 import Footer from "@/app/components/Footer/footer";
-import AuthHeader from "@/app/components/Header/Authheader";
+import LogoHeader from "@/app/components/Header/AuthLogo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default async function RootLayout({
   return (
     <html>
       <body>
-        <AuthHeader />
+        <LogoHeader />
         {children}
         <Footer />
       </body>

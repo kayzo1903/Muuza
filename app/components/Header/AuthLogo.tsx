@@ -1,7 +1,7 @@
 import React from 'react'
 import Logo from '../ui/logo'
 
-const AuthHeader = () => {
+const LogoHeader = () => {
   return (
     <div>
         <Logo />
@@ -9,4 +9,4 @@ const AuthHeader = () => {
   )
 }
 
-export default AuthHeader
+export default LogoHeader
