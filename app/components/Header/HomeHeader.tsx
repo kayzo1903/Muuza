@@ -1,12 +1,11 @@
 "use client";
 import { Link } from "@/i18n/routing";
-import Image from "next/image";
 import React, { useState } from "react";
-import logo from "@/app/public/logo/muuzalogo.png";
 import LocaleSwitcher from "../switcher/LocaleSwitcher";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { useTranslations } from "next-intl";
+import Logo from "../ui/logo";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false); // State to control mobile menu
@@ -36,17 +35,7 @@ const Header = () => {
             )}
           </div>
           {/* Logo */}
-          <Link href={"/"}>
-            <Image
-              alt="Muuza logo"
-              src={logo}
-              style={{
-                height: "48px",
-                width: "202px",
-              }}
-              priority
-            />
-          </Link>
+          <Logo />
         </div>
 
         {/* Desktop Links */}
@@ -77,7 +66,7 @@ const Header = () => {
             <LocaleSwitcher />
           </div>
           <Link
-            href="/get-started"
+            href="/shop"
             className="bg-secondcolor hidden md:flex hover:bg-green-600 text-white py-[10px] px-4 rounded-full transition duration-300"
           >
             {t("try muuza")}
@@ -114,7 +103,7 @@ const Header = () => {
             {t("blog")}
           </Link>
           <Link
-            href="/get-started"
+            href="/shop"
             className="bg-secondcolor hover:bg-green-600 text-white py-2 px-4 rounded-full transition duration-300 text-center"
             onClick={toggleMenu}
           >

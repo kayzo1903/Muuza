@@ -4,7 +4,7 @@ import React from "react";
 
 const SocialMediaAuth = () => {
   const handleGoogleLogin = async () => {
-    await signIn("google", { callbackUrl: "/shop" });
+    await signIn("google", { callbackUrl: "/shop" } );
   };
 
   return (

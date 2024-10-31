@@ -1,13 +1,12 @@
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 import { countries } from "@/libs/datas";
-import { Link, useRouter } from "@/i18n/routing"; // Keep Link from your routing setup
-// import { useRouter } from "next/navigation"; // Import useRouter from Next.js
-
+import { Link, useRouter } from "@/i18n/routing";
+import { signupSchema } from "@/libs/Formvalidation";
 
 export default function SignupForm() {
-  const router = useRouter(); // Initialize router here
-
+  const router = useRouter();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,70 +16,48 @@ export default function SignupForm() {
     confirmPassword: "",
     termsAccepted: false,
   });
-
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value, type, checked } = e.target as any;
+    const { name, value, type } = e.target;
+    const isChecked = type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+  
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: isChecked,
     });
   };
-
-  // Function to validate password contains special character
-  const validatePassword = (password: string) => {
-    const regex = /^(?=.*[!@#$%^&*])/; // Checks for at least one special character
-    return regex.test(password);
-  };
+  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Basic validation
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
-      setSuccess(""); // Clear success message
+    // Validate using Zod schema
+    const validationResult = signupSchema.safeParse(formData);
+    if (!validationResult.success) {
+      setError(validationResult.error.errors[0].message);
+      setSuccess("");
       return;
     }
 
-    if (!validatePassword(formData.password)) {
-      setError("Password must include at least one special character.");
-      setSuccess(""); // Clear success message
-      return;
-    }
+    try {
+      const { data } = await axios.post("/api/register", formData, {
+        headers: { "Content-Type": "application/json" },
+      });
 
-    if (formData.termsAccepted) {
-      try {
-        const res = await fetch("/api/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-
-        const data = await res.json();
-
-        if (res.status === 201) {
-          setSuccess(data.message);
-          setError(""); // Clear error message
-          
-          // Redirect to shop page after successful registration  
-          router.push(`/auth/signIn`); // Use router.push to handle redirection
-        } else {
-          setError(data.error || "Registration failed.");
-          setSuccess(""); // Clear success message
-        }
-      } catch (error) {
+      setSuccess(data.message);
+      setError("");
+      router.push(`/auth/signIn`);
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+        setError(err.response.data.error || "Registration failed.");
+      } else {
         setError("An error occurred. Please try again later.");
-        setSuccess(""); // Clear success message
       }
-    } else {
-      alert("You must agree to the terms to continue.");
+      setSuccess("");
     }
   };
 
@@ -217,15 +194,24 @@ export default function SignupForm() {
           />
           <label className="text-sm text-gray-600">
             I agree to the{" "}
-            <Link href="/terms" className="text-indigo-500 hover:text-indigo-600">
+            <Link
+              href="/terms"
+              className="text-indigo-500 hover:text-indigo-600"
+            >
               Terms of Service
             </Link>
             ,{" "}
-            <Link href="/privacy" className="text-indigo-500 hover:text-indigo-600">
+            <Link
+              href="/privacy"
+              className="text-indigo-500 hover:text-indigo-600"
+            >
               Privacy Policy
             </Link>
             , and{" "}
-            <Link href="/user-agreement" className="text-indigo-500 hover:text-indigo-600">
+            <Link
+              href="/user-agreement"
+              className="text-indigo-500 hover:text-indigo-600"
+            >
               User Agreement
             </Link>
           </label>

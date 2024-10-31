@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import SocialMediaAuth from "./Socialmedia";
 import { Link, useRouter } from "@/i18n/routing";
 
 export default function LoginForm() {
@@ -19,19 +18,26 @@ export default function LoginForm() {
 
     try {
       const res = await axios.post("/api/login", { email, password });
-      if (res.status === 200 && res.data.token) {
+      if (res.status === 200) {
         router.push("/shop");
       } else {
         setError("Unexpected response format or missing token.");
       }
-    } catch (err: any) {
-      // Capture detailed error message
-      const serverError = err.response?.data?.error || "Login failed";
-      setError(serverError);
-      console.error("Login error details:"); // Log detailed error
+    } catch (err: unknown) {
+      // Check if error is an AxiosError
+      if (axios.isAxiosError(err)) {
+        const serverError = err.response?.data?.error || "Login failed";
+        setError(serverError);
+        console.error("Login error details:", err); // Log detailed error
+      } else {
+        // Handle any other types of errors
+        setError("An unexpected error occurred.");
+        console.error("Unexpected error:", err);
+      }
     } finally {
       setLoading(false);
     }
+    
   };
 
   return (
@@ -105,15 +111,13 @@ export default function LoginForm() {
             </button>
           )}
 
-          <SocialMediaAuth />
-
           {/* Register Link */}
           <div className="flex items-center justify-center p-4">
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-xl text-gray-500">
               Don&apos;t have an account?
               <Link
                 href="/auth/register"
-                className="text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700"
+                className="text-indigo-500 mx-2 transition duration-100 hover:text-indigo-600 active:text-indigo-700"
               >
                 Register
               </Link>

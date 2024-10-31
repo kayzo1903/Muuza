@@ -1,5 +1,5 @@
 import Footer from "@/app/components/Footer/footer";
-import AuthHeader from "@/app/components/Header/AuthHeader";
+import AuthHeader from "@/app/components/Header/Authheader";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
