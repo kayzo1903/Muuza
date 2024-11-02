@@ -5,16 +5,13 @@ import { Link } from "@/i18n/routing";
 
 function Logo() {
   return (
-    <div>
-      <Link href={"/shop"}>
+    <div className="flex items-center justify-center sm:justify-start">
+      <Link href="/shop">
         <Image
           alt="Muuza logo"
           src={logo}
-          style={{
-            height: "48px",
-            width: "200px",
-          }}
           priority
+          className="w-32 h-auto sm:w-48 md:w-52 lg:w-56"
         />
       </Link>
     </div>
