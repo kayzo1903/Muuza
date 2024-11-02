@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import logo from "@/app/public/logo/muuzalogo.png";
+import logo from "@/app/public/logo/muuza_logo.png";
 import { Link } from "@/i18n/routing";
 
 function Logo() {

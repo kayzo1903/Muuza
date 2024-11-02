@@ -29,9 +29,9 @@ function ShopHeader() {
 
   return (
     <header className="bg-background shadow w-full h-fit space-y-4 pt-4 relative">
-      <nav className="w-full flex justify-between items-center pr-4 relative">
+      <nav className="w-full flex justify-between items-center px-4 relative">
         <Logo />
-        <div className="flex gap-4 items-center font-thin text-xl text-skin">
+        <div className="flex gap-2 items-center font-thin text-xl text-skin">
           <div className="w-fit">
             <LocaleSwitcher />
           </div>
