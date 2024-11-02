@@ -13,7 +13,7 @@ function Search() {
 
   return (
     <div className='px-4'>
-      <form onSubmit={handleSearch} className='flex gap-2'>
+      <form onSubmit={handleSearch} className='flex gap-2 flex-wrap'>
         <select 
           value={filter} 
           onChange={(e) => setFilter(e.target.value)}
