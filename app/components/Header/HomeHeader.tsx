@@ -67,7 +67,7 @@ const Header = () => {
           </div>
           <Link
             href="/shop"
-            className="bg-secondcolor hidden md:flex hover:bg-green-600 text-white py-[10px] px-4 rounded-full transition duration-300"
+            className="bg-skin hidden md:flex hover:bg-secondcolor text-white py-[10px] px-4 rounded-full transition duration-300"
           >
             {t("try muuza")}
           </Link>
@@ -104,7 +104,7 @@ const Header = () => {
           </Link>
           <Link
             href="/shop"
-            className="bg-secondcolor hover:bg-green-600 text-white py-2 px-4 rounded-full transition duration-300 text-center"
+            className="bg-skin hover:bg-green-500 text-white py-2 px-4 rounded-full transition duration-300 text-center"
             onClick={toggleMenu}
           >
             {t("try muuza")}

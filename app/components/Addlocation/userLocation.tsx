@@ -86,7 +86,7 @@ const Userlocation: React.FC = () => {
   return (
     <form onSubmit={handleSaveLocation} className="w-full">
       <div className="relative max-w-md">
-        <HiLocationMarker className="absolute left-3 top-6 transform -translate-y-1/2 text-secondcolor text-2xl" />
+        <HiLocationMarker className="absolute left-3 top-6 transform -translate-y-1/2 text-skin text-2xl" />
         <input
           type="text"
           value={searchValue}
@@ -109,7 +109,7 @@ const Userlocation: React.FC = () => {
         )}
         <button
           type="submit"
-          className="text-white bg-secondcolor rounded-md py-2 px-2 text-xl hover:text-skin transition-all duration-300"
+          className="text-white bg-skin rounded-md py-2 px-2 text-xl hover:text-skin transition-all duration-300"
         >
           Add location
         </button>

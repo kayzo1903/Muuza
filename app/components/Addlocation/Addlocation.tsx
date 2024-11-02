@@ -19,7 +19,7 @@ function Addlocation() {
            {savedLocation}
         </p>
       ) : (
-        <Link href={"/location"} className="text-sm font-thin text-balance">
+        <Link href={"/location"} className="text-sm font-thin text-balance capitalize">
           Add your location for a better experience
         </Link>
       )}

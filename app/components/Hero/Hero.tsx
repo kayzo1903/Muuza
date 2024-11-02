@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl"; // Import for handling translations
 import heroImage from "@/app/public/images/hero-image.png"; // Replace with your image
 
-import SearchPlace from "../PlaceInput/GooglMapsearch";
+import SearchFoods from "../PlaceInput/GooglMapsearch";
 
 const Hero = () => {
   const t = useTranslations("HomePage"); // Use translation hook
@@ -22,7 +22,7 @@ const Hero = () => {
           </p>
 
           {/* Call to Action */}
-          <SearchPlace />
+          <SearchFoods />
         </div>
 
         {/* Right Side: Hero Image */}
