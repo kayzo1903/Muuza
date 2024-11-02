@@ -9,7 +9,10 @@ function Search() {
     e.preventDefault();
     // Add search logic based on the filter and searchTerm here
     console.log(`Searching for ${searchTerm} in ${filter}`);
+  
   };
+
+
 
   return (
     <div className='px-4'>
