@@ -6,7 +6,7 @@ import { Link } from "@/i18n/routing";
 function Logo() {
   return (
     <div>
-      <Link href={"/"}>
+      <Link href={"/shop"}>
         <Image
           alt="Muuza logo"
           src={logo}

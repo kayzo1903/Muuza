@@ -3,7 +3,6 @@
 import clsx from 'clsx';
 import {ChangeEvent, ReactNode, useTransition} from 'react';
 import {Locale, usePathname, useRouter } from '@/i18n/routing'
-import { FaChevronCircleDown } from 'react-icons/fa';
 
 
 type Props = {
@@ -43,14 +42,13 @@ export default function LocaleSwitcherSelect({
     >
       <p className="sr-only">{label}</p>
       <select
-        className="inline-flex appearance-none bg-transparent py-3 pl-2 pr-6"
+        className="inline-flex appearance-none bg-transparent py-3 pl-2 pr-2"
         defaultValue={defaultValue}
         disabled={isPending}
         onChange={onSelectChange}
       >
         {children}
       </select>
-      <span className="pointer-events-none absolute right-0 -top-[2px]"><FaChevronCircleDown/></span>
     </label>
   );
 }

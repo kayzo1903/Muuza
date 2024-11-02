@@ -1,5 +1,5 @@
 import Footer from "@/app/components/Footer/footer";
-import ShopHeader from "@/app/components/Header/ShopHeader";
+import LogoHeader from "@/app/components/Header/AuthLogo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,8 +14,8 @@ export default async function RootLayout({
 }>) {
   return (
     <html>
-      <body className="antialiased">
-        <ShopHeader />
+      <body>
+        <LogoHeader />
         {children}
         <Footer />
       </body>

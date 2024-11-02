@@ -36,10 +36,10 @@ export async function POST(req: NextRequest) {
 
     // Generate and set the session cookie using createSession
     await createSession({
-      id: user.id,
-      email: user.email,
-      name: user.firstName,
-      role: user.role,
+      id: user.id as string,
+      email: user.email as string,
+      name: user.firstName as string,
+      role: user.role as string,
     });
 
     return NextResponse.json(

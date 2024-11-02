@@ -10,6 +10,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { email, password, firstName, lastName, country } = signupSchema.parse(body);
+    
 
     // Basic validation
     if (!email || !password || !firstName || !lastName || !country) {
@@ -32,7 +33,7 @@ export async function POST(req: NextRequest) {
         password: hashedPassword,
         firstName,
         lastName,
-        country,
+        country
       },
     });
     return NextResponse.json({ message: 'User registered successfully!' }, { status: 201 });
