@@ -26,15 +26,18 @@ model User {
 }
 
 model Business {
-  id          String     @id @default(uuid())
-  name        String
-  description String
-  location    String
-  ownerId     String
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  owner       User       @relation(fields: [ownerId], references: [id])
-  foodItems   FoodItem[]
+  id            String     @id @default(uuid())
+  name          String
+  description   String     @db.Text  // Larger text for detailed descriptions
+  category      String
+  location      String
+  phone         String
+  operatingHours String?   // Optional field for business operating hours
+  ownerId       String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  owner         User       @relation(fields: [ownerId], references: [id])
+  foodItems     FoodItem[]
 
   @@map("businesses")
 }

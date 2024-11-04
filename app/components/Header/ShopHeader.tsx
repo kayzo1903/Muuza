@@ -104,7 +104,7 @@ function ShopHeader() {
                   </ul>
                 </li>
                 <li>
-                  <Link href={"/sell-on-muuza"} onClick={toggleNav}>
+                  <Link href={"/business"} onClick={toggleNav}>
                     Sell on Muuza
                   </Link>
                 </li>

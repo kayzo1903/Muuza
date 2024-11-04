@@ -204,3 +204,21 @@ export const countries: string[] = [
   "Zambia",
   "Zimbabwe",
 ];
+
+export const businessCategories = [
+  { id: 1, name: "Restaurant" },
+  { id: 2, name: "Bakery" },
+  { id: 3, name: "Grocery Store" },
+  { id: 4, name: "Food Truck" },
+  { id: 5, name: "Cafe" },
+  { id: 6, name: "Catering Service" },
+  { id: 7, name: "Farmers Market" },
+  { id: 8, name: "Butchery" },
+  { id: 9, name: "Seafood Market" },
+  { id: 10, name: "Juice Bar" },
+  { id: 11, name: "Ice Cream Parlor" },
+  { id: 12, name: "Health Food Store" },
+  { id: 13, name: "Dairy Shop" },
+  { id: 14, name: "Confectionery" },
+  { id: 15, name: "Other" }
+];
