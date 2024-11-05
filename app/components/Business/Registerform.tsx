@@ -131,7 +131,6 @@ export default function BusinessRegistrationForm() {
                 updateRoleResponse.status === 201
               ) {
                 // Step 5: Route to the dashboard
-                console.log("User role updated to SELLER successfully!");
                 router.push("/dashboard");
               } else {
                 console.error(
@@ -141,8 +140,6 @@ export default function BusinessRegistrationForm() {
               }
             } catch (error) {
               console.error("Error updating user role:", error);
-              // Optionally set an error message for the user
-              setErrorMessage("Failed to update user role. Please try again.");
             }
           }, 2000);
         }
@@ -310,6 +307,4 @@ export default function BusinessRegistrationForm() {
     </div>
   );
 }
-function setErrorMessage(arg0: string) {
-  throw new Error("Function not implemented.");
-}
+
