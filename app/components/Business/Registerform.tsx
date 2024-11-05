@@ -1,18 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { z } from "zod";
+import axios from "axios";
 import { business_cat_Types, businessCategories } from "@/libs/datas";
+import { updateUserRoleToSeller } from "@/libs/updateUserRole";
+import { useRouter } from "@/i18n/routing";
 
 // Define schemas for each step
 const stepSchemas = [
   z.object({
-    businessName: z.string().min(3, "Business name is required and must be 3 atlest characters"),
+    businessName: z
+      .string()
+      .min(3, "Business name is required and must be at least 3 characters"),
   }),
   z.object({
     category: z.string().min(1, "Category is required"),
   }),
   z.object({
-    address: z.string().min(1, "Address is required"),
+    address: z.string().min(5, "Address must be at least 5 characters"),
     phone: z
       .string()
       .regex(/^\d+$/, "Phone number must contain only digits")
@@ -27,6 +32,8 @@ const stepSchemas = [
 ];
 
 export default function BusinessRegistrationForm() {
+  const route = useRouter()
+  const [ownerId, setOwnerId] = useState('');
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     businessName: "",
@@ -37,6 +44,21 @@ export default function BusinessRegistrationForm() {
     operatingHours: "",
   });
   const [errors, setErrors] = useState<string | null>(null);
+
+  //check session and take userid
+  useEffect(() => {
+    const fetchSession = async () => {
+      const response = await fetch("/api/getsession");
+      
+
+      if (response.ok) {
+        const data = await response.json();
+        setOwnerId(data.payload?.userId);
+        console.log("Fetched Owner ID:", data.payload?.userId); // Add this line
+      }
+    };
+    fetchSession();
+  }, []);
 
   // Handle input change
   const handleInputChange = (
@@ -60,23 +82,45 @@ export default function BusinessRegistrationForm() {
   };
 
   // Handle step submission
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
     if (validateStep()) {
-      setCurrentStep((prev) => prev + 1);
+      try {
+        await axios.post("/api/registerBusiness", {
+          step: currentStep,
+          ownerid: ownerId, // Ensure this is correctly named
+          ...formData,
+        });
+        setCurrentStep((prev) => prev + 1);
+      } catch (error) {
+        console.error("Error during step submission:", error); // Add this line
+        setErrors("Failed to validate step. Please try again.");
+      }
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateStep()) {
-      // Submit form data to the server
-      console.log(formData);
+      try {
+        // Submit form data to the server with currentStep included
+      const resp =  await axios.post("/api/registerBusiness", {
+          step: currentStep,
+          ownerid: ownerId, // Include ownerId here as well
+          ...formData,
+        });
+        if (resp.status == 201) {
+         await  updateUserRoleToSeller(ownerId)
+          route.push('/dashboard')
+        }
+      } catch (error) {
+        console.error(error)
+        setErrors("Failed to submit form. Please try again." ,);
+      }
     }
   };
 
   // Define form sections as components for each step
   const StepComponents = [
-    // Step 1: Business Name
     <div key="step1">
       <label
         htmlFor="businessName"
@@ -93,7 +137,6 @@ export default function BusinessRegistrationForm() {
         required
       />
     </div>,
-    // Step 2: Category
     <div key="step2">
       <label
         htmlFor="category"
@@ -118,7 +161,6 @@ export default function BusinessRegistrationForm() {
         ))}
       </select>
     </div>,
-    // Step 3: Address and Phone Number
     <div key="step3">
       <label
         htmlFor="address"
@@ -150,7 +192,6 @@ export default function BusinessRegistrationForm() {
         required
       />
     </div>,
-    // Step 4: Description and Operating Hours
     <div key="step4">
       <label
         htmlFor="description"

@@ -1,5 +1,6 @@
 // lib/definitions.ts
 
+
 export interface SessionPayload {
   id: string; // User ID
   email: string; //userid
@@ -28,3 +29,6 @@ export interface SessionPayload {
   };
   termsAccepted: boolean;
 }
+
+
+
