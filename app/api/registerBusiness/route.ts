@@ -6,9 +6,7 @@ const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
   try {
     const { step, ownerid , ...data } = await req.json();
-    console.log("Received ownerId:", ownerid); // Log the received ownerId
     
-
     // Ensure `step` is provided in the request
     if (typeof step === "undefined") {
       return NextResponse.json({ error: "Step is required." }, { status: 400 });
@@ -98,7 +96,5 @@ export async function POST(req: NextRequest) {
       { error: "An error occurred during registration." },
       { status: 500 }
     );
-  } finally {
-    await prisma.$disconnect();
   }
 }

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import axios from "axios";
 import { business_cat_Types, businessCategories } from "@/libs/datas";
-import { updateUserRoleToSeller } from "@/libs/updateUserRole";
 import { useRouter } from "@/i18n/routing";
 
 // Define schemas for each step
@@ -32,8 +31,8 @@ const stepSchemas = [
 ];
 
 export default function BusinessRegistrationForm() {
-  const route = useRouter()
-  const [ownerId, setOwnerId] = useState('');
+  const router = useRouter();
+  const [ownerId, setOwnerId] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     businessName: "",
@@ -44,17 +43,15 @@ export default function BusinessRegistrationForm() {
     operatingHours: "",
   });
   const [errors, setErrors] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  //check session and take userid
+  // Fetch session and get userId
   useEffect(() => {
     const fetchSession = async () => {
       const response = await fetch("/api/getsession");
-      
-
       if (response.ok) {
         const data = await response.json();
         setOwnerId(data.payload?.userId);
-        console.log("Fetched Owner ID:", data.payload?.userId); // Add this line
       }
     };
     fetchSession();
@@ -87,34 +84,71 @@ export default function BusinessRegistrationForm() {
       try {
         await axios.post("/api/registerBusiness", {
           step: currentStep,
-          ownerid: ownerId, // Ensure this is correctly named
+          ownerid: ownerId,
           ...formData,
         });
         setCurrentStep((prev) => prev + 1);
-      } catch (error) {
-        console.error("Error during step submission:", error); // Add this line
-        setErrors("Failed to validate step. Please try again.");
+      } catch (err) {
+        if (axios.isAxiosError(err) && err.response) {
+          setErrors(err.response.data.error || "Registration failed.");
+        } else {
+          setErrors("An error occurred. Please try again later.");
+        }
       }
     }
   };
 
+  // Handle final submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateStep()) {
       try {
-        // Submit form data to the server with currentStep included
-      const resp =  await axios.post("/api/registerBusiness", {
+        const resp = await axios.post("/api/registerBusiness", {
           step: currentStep,
-          ownerid: ownerId, // Include ownerId here as well
+          ownerid: ownerId,
           ...formData,
         });
-        if (resp.status == 201) {
-         await  updateUserRoleToSeller(ownerId)
-          route.push('/dashboard')
+
+        // Check if the response status indicates success
+        if (resp.status === 200 || resp.status === 201) {
+          // Step 1: Display the success message
+          setSuccessMessage("Business registered successfully!");
+
+          // Step 2: Delay to give the user time to see the success message
+          setTimeout(async () => {
+            try {
+              // Step 3: Call the updateUserRole API endpoint to update the user role to SELLER
+              const updateRoleResponse = await axios.post(
+                "/api/updateUserRole",
+                {
+                  businessId: ownerId, // Ensure resp.data.businessId is returned from the previous request
+                }
+              );
+
+              // Step 4: Check if the role update was successful
+              if (
+                updateRoleResponse.status === 200 ||
+                updateRoleResponse.status === 201
+              ) {
+                // Step 5: Route to the dashboard
+                console.log("User role updated to SELLER successfully!");
+                router.push("/dashboard");
+              } else {
+                console.error(
+                  "Failed to update user role:",
+                  updateRoleResponse.data
+                );
+              }
+            } catch (error) {
+              console.error("Error updating user role:", error);
+              // Optionally set an error message for the user
+              setErrorMessage("Failed to update user role. Please try again.");
+            }
+          }, 2000);
         }
       } catch (error) {
-        console.error(error)
-        setErrors("Failed to submit form. Please try again." ,);
+        console.error(error);
+        setErrors("Failed to submit form. Please try again.");
       }
     }
   };
@@ -238,8 +272,11 @@ export default function BusinessRegistrationForm() {
         {/* Render current step */}
         {StepComponents[currentStep]}
 
-        {/* Error message */}
+        {/* Success and Error messages */}
         {errors && <p className="text-red-500 text-sm">{errors}</p>}
+        {successMessage && (
+          <p className="text-green-500 text-sm">{successMessage}</p>
+        )}
 
         {/* Navigation buttons */}
         <div className="flex justify-between">
@@ -265,11 +302,14 @@ export default function BusinessRegistrationForm() {
               type="submit"
               className="rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
             >
-              Register Business
+              Submit
             </button>
           )}
         </div>
       </form>
     </div>
   );
+}
+function setErrorMessage(arg0: string) {
+  throw new Error("Function not implemented.");
 }
