@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { z } from "zod";
-import { businessCategories } from "@/libs/datas";
+import { business_cat_Types, businessCategories } from "@/libs/datas";
 
 // Define schemas for each step
 const stepSchemas = [
@@ -111,7 +111,7 @@ export default function BusinessRegistrationForm() {
         <option value="" disabled>
           Select a category
         </option>
-        {businessCategories.map((category: any) => (
+        {businessCategories.map((category: business_cat_Types) => (
           <option key={category.id} value={category.name}>
             {category.name}
           </option>

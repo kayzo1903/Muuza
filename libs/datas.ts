@@ -1,4 +1,6 @@
-export const professional : string[] = [
+import { number } from "zod";
+
+export const professional: string[] = [
   "umeme",
   "useremala",
   "ujenzi",
@@ -220,5 +222,10 @@ export const businessCategories = [
   { id: 12, name: "Health Food Store" },
   { id: 13, name: "Dairy Shop" },
   { id: 14, name: "Confectionery" },
-  { id: 15, name: "Other" }
+  { id: 15, name: "Other" },
 ];
+
+export interface business_cat_Types {
+  id: number;
+  name: string;
+}
