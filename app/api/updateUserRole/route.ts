@@ -32,7 +32,6 @@ export async function POST(req: NextRequest) {
       data: { role: 'SELLER' },
     });
 
-    console.log(`User role updated to SELLER for ownerId: ${business.ownerId}`);
     return NextResponse.json({ message: 'User role updated to SELLER.' }, { status: 200 });
   } catch (error) {
     console.error(`Failed to update user role to SELLER:`, error);
