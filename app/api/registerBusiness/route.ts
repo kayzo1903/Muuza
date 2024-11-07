@@ -3,9 +3,21 @@ import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
+type RequestData = {
+  step: number;
+  ownerid: string;
+  businessName?: string;
+  category?: string;
+  address?: string;
+  phone?: string;
+  description?: string;
+  operatingHours?: string;
+};
+
+
 export async function POST(req: NextRequest) {
   try {
-    const { step, ownerid , ...data } = await req.json();
+    const { step, ownerid , ...data } = await req.json() as RequestData
     
     // Ensure `step` is provided in the request
     if (typeof step === "undefined") {
