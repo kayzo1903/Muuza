@@ -96,5 +96,7 @@ export async function POST(req: NextRequest) {
       { error: "An error occurred during registration." },
       { status: 500 }
     );
+  } finally {
+    await prisma.$disconnect();
   }
 }
