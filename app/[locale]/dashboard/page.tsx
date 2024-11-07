@@ -1,10 +1,14 @@
+import CongratulationsPopup from '@/app/components/congratulates/celebration';
 import {useTranslations} from 'next-intl';
 
  
 export default function HomePage() {
   const t = useTranslations('Dashboard');
   return (
-    <div>
-      <h1>{t('title')}</h1>
-    </div>
+    <main className='w-full'>
+      <h1 className='text-center py-2'>{t('title')}</h1>
+      <div>
+        <CongratulationsPopup />
+      </div>
+    </main>
   )}

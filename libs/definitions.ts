@@ -1,4 +1,6 @@
 // lib/definitions.ts
+import { z } from "zod";
+
 
 
 export interface SessionPayload {
@@ -30,5 +32,29 @@ export interface SessionPayload {
   termsAccepted: boolean;
 }
 
+// Define schemas for each step
+export const stepSchemas = [
+  z.object({
+    businessName: z
+      .string()
+      .min(3, "Business name is required and must be at least 3 characters"),
+  }),
+  z.object({
+    category: z.string().min(1, "Category is required"),
+  }),
+  z.object({
+    address: z.string().min(5, "Address must be at least 5 characters"),
+    phone: z
+      .string()
+      .regex(/^\d+$/, "Phone number must contain only digits")
+      .min(10, "Phone number must be at least 10 digits"),
+  }),
+  z.object({
+    description: z
+      .string()
+      .min(5, "Description should be at least 5 characters"),
+    operatingHours: z.string().optional(),
+  }),
+];
 
 

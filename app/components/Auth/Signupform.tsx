@@ -79,7 +79,7 @@ export default function SignupForm() {
               value={formData.firstName}
               onChange={handleInputChange}
               required
-              className="w-full rounded border bg-yellow-100 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+              className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
             />
           </div>
 
@@ -96,7 +96,7 @@ export default function SignupForm() {
               value={formData.lastName}
               onChange={handleInputChange}
               required
-              className="w-full rounded border bg-yellow-100 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+              className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
             />
           </div>
         </div>
@@ -115,7 +115,7 @@ export default function SignupForm() {
             value={formData.email}
             onChange={handleInputChange}
             required
-            className="w-full rounded border bg-yellow-100 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
           />
         </div>
 
@@ -132,7 +132,7 @@ export default function SignupForm() {
             value={formData.country}
             onChange={handleInputChange}
             required
-            className="w-full rounded border bg-yellow-100 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
           >
             <option value="" disabled>
               Select your country
@@ -160,7 +160,7 @@ export default function SignupForm() {
             onChange={handleInputChange}
             required
             placeholder="Your password (e.g., P@ssw0rd!)"
-            className="w-full rounded border bg-yellow-100 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
           />
         </div>
 
@@ -178,7 +178,7 @@ export default function SignupForm() {
             value={formData.confirmPassword}
             onChange={handleInputChange}
             required
-            className="w-full rounded border bg-yellow-100 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
           />
         </div>
 
@@ -220,7 +220,7 @@ export default function SignupForm() {
         {/* Sign-Up Button */}
         <button
           type="submit"
-          className="block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-gray-700 focus-visible:ring active:bg-gray-600 md:text-base"
+          className="block rounded-lg bg-skin px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-secondcolor focus-visible:ring active:bg-gray-600 md:text-base"
         >
           Sign Up
         </button>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../ui/logo";
 import {
   FaCartPlus,
@@ -17,6 +17,7 @@ import NoteMessage from "../notification/Notification";
 function ShopHeader() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [SellOnMuuze, setSellOnMuuza] = useState(false);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -26,6 +27,19 @@ function ShopHeader() {
   const toggleCategories = () => {
     setIsCategoriesOpen(!isCategoriesOpen);
   };
+
+  // Fetch session and get userId
+  useEffect(() => {
+    const fetchSession = async () => {
+      const response = await fetch("/api/getsession");
+      if (response.status === 200 || response.status === 201) {
+        setSellOnMuuza(true);
+      } else {
+        setSellOnMuuza(false);
+      }
+    };
+    fetchSession();
+  }, []);
 
   return (
     <header className="bg-background shadow w-full h-fit space-y-4 pt-4 relative">
@@ -103,11 +117,15 @@ function ShopHeader() {
                     </li>
                   </ul>
                 </li>
-                <li>
-                  <Link href={"/business"} onClick={toggleNav}>
-                    Sell on Muuza
-                  </Link>
-                </li>
+                {SellOnMuuze ? (
+                  <li>
+                    <Link href={"/business"} onClick={toggleNav}>
+                      Sell on Muuza
+                    </Link>
+                  </li>
+                ) : (
+                  <></>
+                )}
                 <li>
                   <Link href={"/favourites"} onClick={toggleNav}>
                     My Favourites

@@ -1,34 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { z } from "zod";
 import axios from "axios";
 import { business_cat_Types, businessCategories } from "@/libs/datas";
 import { useRouter } from "@/i18n/routing";
-
-// Define schemas for each step
-const stepSchemas = [
-  z.object({
-    businessName: z
-      .string()
-      .min(3, "Business name is required and must be at least 3 characters"),
-  }),
-  z.object({
-    category: z.string().min(1, "Category is required"),
-  }),
-  z.object({
-    address: z.string().min(5, "Address must be at least 5 characters"),
-    phone: z
-      .string()
-      .regex(/^\d+$/, "Phone number must contain only digits")
-      .min(10, "Phone number must be at least 10 digits"),
-  }),
-  z.object({
-    description: z
-      .string()
-      .min(5, "Description should be at least 5 characters"),
-    operatingHours: z.string().optional(),
-  }),
-];
+import { stepSchemas } from "@/libs/definitions";
+import CongratulationsPopup from "../congratulates/celebration";
 
 export default function BusinessRegistrationForm() {
   const router = useRouter();
@@ -44,6 +20,7 @@ export default function BusinessRegistrationForm() {
   });
   const [errors, setErrors] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false); // New state for showing success modal
 
   // Fetch session and get userId
   useEffect(() => {
@@ -52,6 +29,8 @@ export default function BusinessRegistrationForm() {
       if (response.ok) {
         const data = await response.json();
         setOwnerId(data.payload?.userId);
+      } else {
+        router.push("/auth/signIn");
       }
     };
     fetchSession();
@@ -113,7 +92,7 @@ export default function BusinessRegistrationForm() {
         if (resp.status === 200 || resp.status === 201) {
           // Step 1: Display the success message
           setSuccessMessage("Business registered successfully!");
-
+          setShowSuccessModal(true);
           // Step 2: Delay to give the user time to see the success message
           setTimeout(async () => {
             try {
@@ -133,6 +112,7 @@ export default function BusinessRegistrationForm() {
                 // Step 5: Route to the dashboard
                 router.push("/dashboard");
               } else {
+                router.push("/bussiness");
                 console.error(
                   "Failed to update user role:",
                   updateRoleResponse.data
@@ -258,52 +238,56 @@ export default function BusinessRegistrationForm() {
 
   return (
     <div className="w-full flex justify-center items-center px-4 mt-16">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-lg space-y-6 rounded-lg bg-gray-50 p-8 shadow-lg outline-none"
-      >
-        <h2 className="text-center text-2xl font-bold text-gray-800">
-          Register Your Business
-        </h2>
+      {showSuccessModal ? (
+        <CongratulationsPopup />
+      ) : (
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-lg space-y-6 rounded-lg bg-gray-50 p-8 shadow-lg outline-none"
+        >
+          <h2 className="text-center text-2xl font-bold text-gray-800">
+            Register Your Business
+          </h2>
 
-        {/* Render current step */}
-        {StepComponents[currentStep]}
+          {/* Render current step */}
+          {StepComponents[currentStep]}
 
-        {/* Success and Error messages */}
-        {errors && <p className="text-red-500 text-sm">{errors}</p>}
-        {successMessage && (
-          <p className="text-green-500 text-sm">{successMessage}</p>
-        )}
-
-        {/* Navigation buttons */}
-        <div className="flex justify-between">
-          {currentStep > 0 && (
-            <button
-              type="button"
-              onClick={() => setCurrentStep(currentStep - 1)}
-              className="rounded-md bg-gray-300 p-2 text-gray-700 hover:bg-gray-400"
-            >
-              Previous
-            </button>
+          {/* Success and Error messages */}
+          {errors && <p className="text-red-500 text-sm">{errors}</p>}
+          {successMessage && (
+            <p className="text-green-500 text-sm">{successMessage}</p>
           )}
-          {currentStep < StepComponents.length - 1 ? (
-            <button
-              type="button"
-              onClick={handleNextStep}
-              className="rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
-            >
-              Next
-            </button>
-          ) : (
-            <button
-              type="submit"
-              className="rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
-            >
-              Submit
-            </button>
-          )}
-        </div>
-      </form>
+
+          {/* Navigation buttons */}
+          <div className="flex justify-between">
+            {currentStep > 0 && (
+              <button
+                type="button"
+                onClick={() => setCurrentStep(currentStep - 1)}
+                className="rounded-md bg-gray-300 p-2 text-gray-700 hover:bg-gray-400"
+              >
+                Previous
+              </button>
+            )}
+            {currentStep < StepComponents.length - 1 ? (
+              <button
+                type="button"
+                onClick={handleNextStep}
+                className="rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
+              >
+                Next
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
+              >
+                Submit
+              </button>
+            )}
+          </div>
+        </form>
+      )}
     </div>
   );
 }
