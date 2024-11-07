@@ -4,6 +4,7 @@ import axios from "axios";
 import { countries } from "@/libs/datas";
 import { Link, useRouter } from "@/i18n/routing";
 import { signupSchema } from "@/libs/Formvalidation";
+import { ClipLoader } from "react-spinners"; // Add a loading spinner (optional)
 
 export default function SignupForm() {
   const router = useRouter();
@@ -18,6 +19,7 @@ export default function SignupForm() {
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state for button
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -30,7 +32,6 @@ export default function SignupForm() {
       [name]: isChecked,
     });
   };
-  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,6 +43,8 @@ export default function SignupForm() {
       setSuccess("");
       return;
     }
+
+    setLoading(true); // Start loading state
 
     try {
       const { data } = await axios.post("/api/register", formData, {
@@ -58,6 +61,8 @@ export default function SignupForm() {
         setError("An error occurred. Please try again later.");
       }
       setSuccess("");
+    } finally {
+      setLoading(false); // Stop loading state after submission
     }
   };
 
@@ -79,7 +84,7 @@ export default function SignupForm() {
               value={formData.firstName}
               onChange={handleInputChange}
               required
-              className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+              className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
             />
           </div>
 
@@ -96,7 +101,7 @@ export default function SignupForm() {
               value={formData.lastName}
               onChange={handleInputChange}
               required
-              className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+              className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
             />
           </div>
         </div>
@@ -115,7 +120,7 @@ export default function SignupForm() {
             value={formData.email}
             onChange={handleInputChange}
             required
-            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
           />
         </div>
 
@@ -132,7 +137,7 @@ export default function SignupForm() {
             value={formData.country}
             onChange={handleInputChange}
             required
-            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
           >
             <option value="" disabled>
               Select your country
@@ -160,7 +165,7 @@ export default function SignupForm() {
             onChange={handleInputChange}
             required
             placeholder="Your password (e.g., P@ssw0rd!)"
-            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
           />
         </div>
 
@@ -178,7 +183,7 @@ export default function SignupForm() {
             value={formData.confirmPassword}
             onChange={handleInputChange}
             required
-            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+            className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
           />
         </div>
 
@@ -220,9 +225,10 @@ export default function SignupForm() {
         {/* Sign-Up Button */}
         <button
           type="submit"
-          className="block rounded-lg bg-skin px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-secondcolor focus-visible:ring active:bg-gray-600 md:text-base"
+          disabled={loading}
+          className="flex items-center justify-center rounded-lg bg-skin px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-green-100 transition duration-100 hover:bg-secondcolor focus-visible:ring active:bg-gray-600 md:text-base"
         >
-          Sign Up
+          {loading ? <ClipLoader size={20} color="#fff" /> : "Sign Up"}
         </button>
 
         {/* Error and Success Messages */}
@@ -231,7 +237,7 @@ export default function SignupForm() {
       </div>
       <div className="flex items-center justify-center p-4">
         <p className="text-center text-sm text-gray-500">
-          Already have an account?
+          Already have an account?{" "}
           <Link
             href="/auth/signIn"
             className="text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700"

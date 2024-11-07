@@ -5,11 +5,13 @@ import { business_cat_Types, businessCategories } from "@/libs/datas";
 import { useRouter } from "@/i18n/routing";
 import { stepSchemas } from "@/libs/definitions";
 import CongratulationsPopup from "../congratulates/celebration";
+import BusinessSpinner from "../loadingblock/BussinessSpinner";
 
 export default function BusinessRegistrationForm() {
   const router = useRouter();
   const [ownerId, setOwnerId] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(false); // New state for loading
   const [formData, setFormData] = useState({
     businessName: "",
     category: "",
@@ -60,6 +62,7 @@ export default function BusinessRegistrationForm() {
   // Handle step submission
   const handleNextStep = async () => {
     if (validateStep()) {
+      setIsLoading(true); // Show the spinner
       try {
         await axios.post("/api/registerBusiness", {
           step: currentStep,
@@ -73,6 +76,8 @@ export default function BusinessRegistrationForm() {
         } else {
           setErrors("An error occurred. Please try again later.");
         }
+      } finally {
+        setIsLoading(false); // Hide the spinner when done
       }
     }
   };
@@ -144,7 +149,7 @@ export default function BusinessRegistrationForm() {
         name="businessName"
         value={formData.businessName}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
         required
       />
     </div>,
@@ -159,7 +164,7 @@ export default function BusinessRegistrationForm() {
         name="category"
         value={formData.category}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
         required
       >
         <option value="" disabled>
@@ -184,7 +189,7 @@ export default function BusinessRegistrationForm() {
         name="address"
         value={formData.address}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
         required
       />
 
@@ -199,7 +204,7 @@ export default function BusinessRegistrationForm() {
         name="phone"
         value={formData.phone}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
         required
       />
     </div>,
@@ -214,7 +219,7 @@ export default function BusinessRegistrationForm() {
         name="description"
         value={formData.description}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
         rows={4}
         required
       />
@@ -230,7 +235,7 @@ export default function BusinessRegistrationForm() {
         name="operatingHours"
         value={formData.operatingHours}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
         placeholder="e.g., Mon-Fri: 9am - 5pm"
       />
     </div>,
@@ -273,16 +278,28 @@ export default function BusinessRegistrationForm() {
               <button
                 type="button"
                 onClick={handleNextStep}
-                className="rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
+                className="relative rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
+                disabled={isLoading} // Disable the button while loading
               >
-                Next
+                {isLoading ? (
+                  <div className="absolute inset-0 flex justify-center items-center">
+                    <BusinessSpinner />
+                  </div>
+                ) : (
+                  "Next"
+                )}
               </button>
             ) : (
               <button
                 type="submit"
                 className="rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
+                disabled={isLoading} // Disable the button while loading
               >
-                Submit
+                {isLoading ? (
+                    <BusinessSpinner />
+                  ) : (
+                  "Submit"
+                )}
               </button>
             )}
           </div>

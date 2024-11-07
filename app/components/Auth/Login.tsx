@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useRouter } from "@/i18n/routing";
+import ClipLoader from "react-spinners/ClipLoader"; // Import spinner
 
 export default function LoginForm() {
   const router = useRouter();
@@ -24,20 +25,17 @@ export default function LoginForm() {
         setError("Unexpected response format or missing token.");
       }
     } catch (err: unknown) {
-      // Check if error is an AxiosError
       if (axios.isAxiosError(err)) {
         const serverError = err.response?.data?.error || "Login failed";
         setError(serverError);
-        console.error("Login error details:", err); // Log detailed error
+        console.error("Login error details:", err);
       } else {
-        // Handle any other types of errors
         setError("An unexpected error occurred.");
         console.error("Unexpected error:", err);
       }
     } finally {
       setLoading(false);
     }
-    
   };
 
   return (
@@ -59,7 +57,7 @@ export default function LoginForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+              className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
             />
           </div>
 
@@ -78,7 +76,7 @@ export default function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
+                className="w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
               />
               <button
                 type="button"
@@ -93,27 +91,22 @@ export default function LoginForm() {
           {/* Error Message */}
           {error && <p className="text-red-600">{error}</p>}
 
-          {/* Loading State */}
-          {loading ? (
-            <button
-              type="button"
-              className="block rounded-lg bg-gray-400 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100"
-              disabled
-            >
-              Logging in...
-            </button>
-          ) : (
-            <button
-              type="submit"
-              className="block rounded-lg bg-skin px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-secondcolor focus-visible:ring active:bg-gray-600 md:text-base"
-            >
-              Log in
-            </button>
-          )}
+          {/* Loading State with Spinner */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="flex items-center justify-center w-full rounded-lg bg-skin px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-secondcolor focus-visible:ring active:bg-gray-600 md:text-base"
+          >
+            {loading ? (
+              <ClipLoader color="#ffffff" size={20} /> // Spinner here
+            ) : (
+              "Log in"
+            )}
+          </button>
 
           {/* Register Link */}
           <div className="flex items-center justify-center p-4">
-            <p className="text-center text-xl text-gray-500">
+            <p className="text-center text-sm text-gray-500">
               Don&apos;t have an account?
               <Link
                 href="/auth/register"
