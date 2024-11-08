@@ -1,4 +1,3 @@
-import Registerloading from '@/app/components/loadingblock/Registerloading';
 import { Link } from '@/i18n/routing';
 import {useTranslations} from 'next-intl';
 

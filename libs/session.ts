@@ -85,3 +85,29 @@ export async function updateSession() {
 export async function deleteSession() {
   cookies().delete("session");
 }
+
+// Updates the user role to "seller" and refreshes the session cookie
+export async function updateRoleToSeller() {
+  const sessionToken = cookies().get("session")?.value;
+  const payload = await decrypt(sessionToken) as SessionPayload;
+
+  if (!sessionToken || !payload) return null;
+
+  // Update the role to "seller"
+  payload.role = "SEllER";
+
+  // Generate a new session token with the updated role
+  const updatedSessionToken = await encrypt(payload);
+
+  // Extend the session expiration to 7 days
+  const newExpiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+
+  // Set the updated session cookie
+  cookies().set("session", updatedSessionToken, {
+    httpOnly: true,
+    secure: true,
+    expires: newExpiresAt,
+    sameSite: "lax",
+    path: "/",
+  });
+}

@@ -117,6 +117,7 @@ export default function BusinessRegistrationForm() {
                 updateRoleResponse.status === 201
               ) {
                 // Step 5: Route to the dashboard
+                await fetch("/api/updatessesion")
                 router.push("/dashboard");
               } else {
                 router.push("/bussiness");
@@ -151,7 +152,7 @@ export default function BusinessRegistrationForm() {
         name="businessName"
         value={formData.businessName}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
+        className="mt-1 w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
         required
       />
     </div>,
@@ -166,7 +167,7 @@ export default function BusinessRegistrationForm() {
         name="category"
         value={formData.category}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
+        className="mt-1 w-full rounded-md p-2 shadow-sm focus:border-green-100 focus:ring"
         required
       >
         <option value="" disabled>
@@ -191,7 +192,7 @@ export default function BusinessRegistrationForm() {
         name="address"
         value={formData.address}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
+        className="mt-1 w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
         required
       />
 
@@ -206,7 +207,7 @@ export default function BusinessRegistrationForm() {
         name="phone"
         value={formData.phone}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
+        className="mt-1 w-full rounded-md border-green-100 p-2 shadow-sm focus:border-green-200 focus:ring-border-green-200"
         required
       />
     </div>,
@@ -221,7 +222,7 @@ export default function BusinessRegistrationForm() {
         name="description"
         value={formData.description}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
+        className="mt-1 w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
         rows={4}
         required
       />
@@ -237,7 +238,7 @@ export default function BusinessRegistrationForm() {
         name="operatingHours"
         value={formData.operatingHours}
         onChange={handleInputChange}
-        className="mt-1 w-full rounded-md border-gray-300 p-2 shadow-sm focus:border-green-100 focus:ring-border-green-200"
+        className="mt-1 w-full rounded border bg-white px-3 py-2 text-gray-800 outline-none ring-green-100 transition duration-100 focus:ring"
         placeholder="e.g., Mon-Fri: 9am - 5pm"
       />
     </div>,

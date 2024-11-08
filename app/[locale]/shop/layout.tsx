@@ -13,12 +13,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
-      <body className="antialiased">
+      <body>
         <ShopHeader />
         {children}
         <Footer />
       </body>
-    </html>
   );
 }
