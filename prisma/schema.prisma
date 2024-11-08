@@ -31,12 +31,12 @@ model Business {
   ownerId        String
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
-  isVerified     Boolean    @default(false)
+  address        String
+  businessName   String     @unique
   category       String
+  isVerified     Boolean    @default(false)
   operatingHours String?
   phone          String
-  businessName   String     @unique
-  address        String
   profileUrl     String?
   owner          User       @relation(fields: [ownerId], references: [id])
   foodItems      FoodItem[]
