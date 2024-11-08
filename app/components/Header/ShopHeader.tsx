@@ -42,7 +42,7 @@ function ShopHeader() {
       } catch (error) {
         console.error("Error fetching session:", error);
       }
-    };    
+    };
     fetchSession();
   }, []);
 
@@ -74,15 +74,13 @@ function ShopHeader() {
           </div>
           <div className="w-full">
             <div className="w-full mt-8 border-b-[1px] pb-8 border-gray-300">
-              <ul className="flex flex-col gap-4 text-gray-900 text-2xl w-full font-semibold">
+              <div className="flex flex-col gap-4 text-gray-900 text-2xl w-full font-semibold">
                 {isSeller && (
-                  <li>
-                    <Link href={"/dashboard"} onClick={toggleNav}>
-                      Dashboard
-                    </Link>
-                  </li>
+                  <Link href={"/dashboard"} onClick={toggleNav}>
+                    Dashboard
+                  </Link>
                 )}
-                <li className="relative">
+                <div className="relative">
                   {/* Categories Dropdown */}
                   <button
                     className="flex items-center w-full text-left"
@@ -96,53 +94,43 @@ function ShopHeader() {
                     />
                   </button>
                   {isCategoriesOpen && (
-                    <ul className="overflow-hidden transition-all duration-500 bg-gray-100 rounded-lg ml-4 p-4 shadow-md space-y-2">
-                      <li>
-                        <Link href={"/foods"} onClick={toggleNav}>
-                          Foods
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={"/most-reviewed"} onClick={toggleNav}>
-                          Most Reviewed
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={"/trending"} onClick={toggleNav}>
-                          Trending
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={"/nearby"} onClick={toggleNav}>
-                          Near-By
-                        </Link>
-                      </li>
-                    </ul>
+                    <div className="overflow-hidden transition-all flex gap-2 flex-col duration-500 bg-gray-100 rounded-lg ml-4 p-4 shadow-md space-y-2">
+                      <Link href={"/foods"} onClick={toggleNav}>
+                        Foods
+                      </Link>
+
+                      <Link href={"/most-reviewed"} onClick={toggleNav}>
+                        Most Reviewed
+                      </Link>
+
+                      <Link href={"/trending"} onClick={toggleNav}>
+                        Trending
+                      </Link>
+
+                      <Link href={"/nearby"} onClick={toggleNav}>
+                        Near-By
+                      </Link>
+                    </div>
                   )}
-                </li>
+                </div>
                 {SellOnMuuza && (
-                  <li>
-                    <Link href={"/business"} onClick={toggleNav}>
-                      Sell on Muuza
-                    </Link>
-                  </li>
+                  <Link href={"/business"} onClick={toggleNav}>
+                    Sell on Muuza
+                  </Link>
                 )}
-                <li>
-                  <Link href={"/favourites"} onClick={toggleNav}>
-                    My Favourites
-                  </Link>
-                </li>
-                <li>
-                  <Link href={"/help"} onClick={toggleNav}>
-                    Help
-                  </Link>
-                </li>
-                <li>
-                  <Link href={"/setting/changelocation"} onClick={toggleNav}>
-                    Change Location
-                  </Link>
-                </li>
-              </ul>
+
+                <Link href={"/favourites"} onClick={toggleNav}>
+                  My Favourites
+                </Link>
+
+                <Link href={"/help"} onClick={toggleNav}>
+                  Help
+                </Link>
+
+                <Link href={"/setting/changelocation"} onClick={toggleNav}>
+                  Change Location
+                </Link>
+              </div>
             </div>
             <Myaccount />
           </div>
