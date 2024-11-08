@@ -5,7 +5,7 @@ import { business_cat_Types, businessCategories } from "@/libs/datas";
 import { useRouter } from "@/i18n/routing";
 import { stepSchemas } from "@/libs/definitions";
 import CongratulationsPopup from "../congratulates/celebration";
-import BusinessSpinner from "../loadingblock/BussinessSpinner";
+import Registerloading from "../loadingblock/Registerloading";
 
 export default function BusinessRegistrationForm() {
   const router = useRouter();
@@ -85,6 +85,7 @@ export default function BusinessRegistrationForm() {
   // Handle final submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true)
     if (validateStep()) {
       try {
         const resp = await axios.post("/api/registerBusiness", {
@@ -97,6 +98,7 @@ export default function BusinessRegistrationForm() {
         if (resp.status === 200 || resp.status === 201) {
           // Step 1: Display the success message
           setSuccessMessage("Business registered successfully!");
+          setIsLoading(false)
           setShowSuccessModal(true);
           // Step 2: Delay to give the user time to see the success message
           setTimeout(async () => {
@@ -241,70 +243,63 @@ export default function BusinessRegistrationForm() {
     </div>,
   ];
 
-  return (
-    <div className="w-full flex justify-center items-center px-4 mt-16">
-      {showSuccessModal ? (
-        <CongratulationsPopup />
-      ) : (
-        <form
-          onSubmit={handleSubmit}
-          className="w-full max-w-lg space-y-6 rounded-lg bg-gray-50 p-8 shadow-lg outline-none"
-        >
-          <h2 className="text-center text-2xl font-bold text-gray-800">
-            Register Your Business
-          </h2>
-
-          {/* Render current step */}
-          {StepComponents[currentStep]}
-
-          {/* Success and Error messages */}
-          {errors && <p className="text-red-500 text-sm">{errors}</p>}
-          {successMessage && (
-            <p className="text-green-500 text-sm">{successMessage}</p>
-          )}
-
-          {/* Navigation buttons */}
-          <div className="flex justify-between">
-            {currentStep > 0 && (
-              <button
-                type="button"
-                onClick={() => setCurrentStep(currentStep - 1)}
-                className="rounded-md bg-gray-300 p-2 text-gray-700 hover:bg-gray-400"
-              >
-                Previous
-              </button>
-            )}
-            {currentStep < StepComponents.length - 1 ? (
-              <button
-                type="button"
-                onClick={handleNextStep}
-                className="relative rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
-                disabled={isLoading} // Disable the button while loading
-              >
-                {isLoading ? (
-                  <div className="absolute inset-0 flex justify-center items-center">
-                    <BusinessSpinner />
-                  </div>
+      return (
+        <div className="w-full flex justify-center items-center px-4 mt-16">
+          {showSuccessModal ? (
+            <CongratulationsPopup />
+          ) : isLoading ? ( // Render RegisterLoading while loading
+            <Registerloading />
+          ) : (
+            <form
+              onSubmit={handleSubmit}
+              className="w-full max-w-lg space-y-6 rounded-lg bg-gray-50 p-8 shadow-lg outline-none"
+            >
+              <h2 className="text-center text-2xl font-bold text-gray-800">
+                Register Your Business
+              </h2>
+    
+              {/* Render current step */}
+              {StepComponents[currentStep]}
+    
+              {/* Success and Error messages */}
+              {errors && <p className="text-red-500 text-sm">{errors}</p>}
+              {successMessage && (
+                <p className="text-green-500 text-sm">{successMessage}</p>
+              )}
+    
+              {/* Navigation buttons */}
+              <div className="flex justify-between">
+                {currentStep > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setCurrentStep(currentStep - 1)}
+                    className="rounded-md bg-gray-300 p-2 text-gray-700 hover:bg-gray-400"
+                  >
+                    Previous
+                  </button>
+                )}
+                {currentStep < StepComponents.length - 1 ? (
+                  <button
+                    type="button"
+                    onClick={handleNextStep}
+                    className="relative rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
+                    disabled={isLoading}
+                  >
+                    Next
+                  </button>
                 ) : (
-                  "Next"
+                  <button
+                    type="submit"
+                    className="rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
+                    disabled={isLoading}
+                  >
+                    Submit
+                  </button>
                 )}
-              </button>
-            ) : (
-              <button
-                type="submit"
-                className="rounded-md bg-skin p-2 text-white hover:bg-secondcolor"
-                disabled={isLoading} // Disable the button while loading
-              >
-                {isLoading ? (
-                    <BusinessSpinner />
-                  ) : (
-                  "Submit"
-                )}
-              </button>
-            )}
-          </div>
-        </form>
-      )}
-    </div>
+              </div>
+            </form>
+          )}
+        </div>
+    
   );
 }
